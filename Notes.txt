@@ -1,0 +1,3 @@
+- First go around, make it simple and get the logic right
+- After getting a simple website going that does what you want it to do
+ then recreate it using React, Express.

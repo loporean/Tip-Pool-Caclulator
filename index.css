@@ -1,0 +1,17 @@
+.inputTitle {
+    display: flex;
+    padding: 10px;
+    font-size: 25px;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+.inputTitle span {
+    width: 160px;
+}
+
+.results {
+    margin-top: 30px;
+    margin-left: 10px;
+    list-style-type: circle;
+}
