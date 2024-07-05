@@ -18,6 +18,8 @@
 
 body {
     margin-left: 10%;
+    /* Disable touble tap iOS */
+    touch-action: manipulation;
 }
 
 .description {
