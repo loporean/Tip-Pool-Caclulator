@@ -175,6 +175,13 @@
 </head>
 <body>
     <h1>Tip Pooling Calculator</h1>
+
+    <!-- Description of calculator -->
+     <div class="description">
+         <p>The Tip Pooling Calculator divides tips among employees 
+            based on their hours worked, guaranteeing equitable distribution 
+            from the shared tips pool.</p>
+     </div>
             
     <button type="button" onclick="addEmployee()">add</button>
     <button type="button" onclick="removeEmployee()">remove</button><br><br>
@@ -197,13 +204,14 @@
 
     <br><br>
 
-    <label for="totalTips">Total Tips:</label>
+    <label for="totalTips" style="font-weight: 100;">Total Tips:</label>
     <input type="text" id="totalTips" name="totalTips" oninput="isNum(this)">
     <br><br><br>
 
     <button type="button" onclick="calcTips()">Calculate Tips</button>
 
 
+    <!--  Displays results after calculating tips -->
     <div id="results" class="results"></div>
 
 </body>
