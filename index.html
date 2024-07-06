@@ -19,11 +19,23 @@
         // Total tips
         var totTips = 0;
 
-        // initialize to 2 since 1 is already present
-        let count = 2;
+        // Grab the count from local storage
+        var count=localStorage.setItem("count", count);
+        console.log(count);
+
+        // If count is null, initialize to 1 for initial row
+        if (count == undefined) {
+            count = 1;
+        }
 
         // Adds another employee field for calculating
         function addEmployee() {
+            // incrememnt employee count
+            count++;
+
+            // Save to local storage
+            localStorage.setItem("count", count);
+
             console.log("Add employee " + count);
 
             // Container where new field will be added
@@ -54,8 +66,6 @@
             container.appendChild(hoursField);
             container.appendChild(br);
 
-            // incrememnt employee count
-            count++;
         }
 
         // Remove employee field
@@ -70,6 +80,8 @@
                     container.removeChild(container.lastChild);
                 }
                 count--;
+                // Save to local storage
+                localStorage.setItem("count", count);
             }
         }
 
@@ -130,7 +142,6 @@
                     tips = parseFloat(hoursValue * tipShare).toFixed(2);
 
                     // Create a list of employees, their hours and the tip share
-                    // var listItem = document.createElement("li");
                     var listItem = document.createElement("li");
                     listItem.style.padding = "3px";
                     listItem.textContent = nameValue + ": $" + tips;
@@ -147,7 +158,7 @@
             results.appendChild(list);
         }
 
-        // Clear the input fields after a page refresh
+        // Clear the input fields
         function resetFormFields() {
             var inputFields = document.getElementsByTagName("input");
             for (var i=0; i<inputFields.length; i++) {
@@ -169,7 +180,25 @@
             input.value = input.value.replace(/[^0-9.]/g, '');
         }
 
-        window.onload = resetFormFields;
+        function addMore() {
+            for (let i=0; i<5; i++) {
+                addEmployee();
+            }
+        }
+
+        // If local storage contains previous count
+        // then generate fields from previous session
+        function restoreFields() {
+            for (let i=0; i<count-1; i++) {
+                addEmployee();
+            }
+        }
+
+        if (count != 1) {
+            restoreFields();
+        }
+
+        // window.onload = resetFormFields;
 
     </script>
 </head>
@@ -177,11 +206,13 @@
     <h1>Tip Pooling Calculator</h1>
 
     <!-- Description of calculator -->
-     <div class="description">
-         <p>The Tip Pooling Calculator divides tips among employees 
-            based on their hours worked, guaranteeing equitable distribution 
-            from the shared tips pool.</p>
-     </div>
+    <div class="description">
+        <p>The Tip Pooling Calculator divides tips among employees 
+        based on their hours worked, guaranteeing equitable distribution 
+        from the shared tips pool.</p>
+    </div>
+
+    <!-- <button type="button" onclick="addMore()">Add 5</button><br><br> -->
             
     <button type="button" onclick="addEmployee()">add</button>
     <button type="button" onclick="removeEmployee()">remove</button><br><br>
