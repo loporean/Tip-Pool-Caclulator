@@ -11,7 +11,9 @@
         var totTips = 0;
 
         // Grab the count from local storage
-        var count=localStorage.getItem("count", count);
+        // var count=localStorage.getItem("count", count);
+        // Grab count from cookie
+        var count = getCookie("count");
         console.log(count);
 
         // If count is null, initialize to 1 for initial row
@@ -19,7 +21,10 @@
             count = 1;
             console.log("count set to", count);
             // Save to local storage
-            localStorage.setItem("count", count);
+            // localStorage.setItem("count", count);
+            setCookie("count", count, 60); // Store for 60 days
+        } else {
+            count = parseInt(count); // Convert string to number
         }
 
         // var count = 1;
@@ -30,7 +35,9 @@
             count++;
 
             // Save to local storage
-            localStorage.setItem("count", count);
+            // localStorage.setItem("count", count);
+            // Save to cookie
+            setCookie("count", count, 60); // Save for 60 days
 
             console.log("Add employee " + count);
 
@@ -77,7 +84,8 @@
                 }
                 count--;
                 // Save to local storage
-                localStorage.setItem("count", count);
+                // localStorage.setItem("count", count);
+                setCookie("count", count, 60); // Save for 60 days
             }
         }
 
@@ -174,6 +182,27 @@
         function isNum(input) {
             // Accept only whole numbers and decimal numbers
             input.value = input.value.replace(/[^0-9.]/g, '');
+        }
+
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        }
+        
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0;i < ca.length;i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
         }
 
 
