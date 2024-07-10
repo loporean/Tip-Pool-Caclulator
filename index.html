@@ -94,27 +94,13 @@
 
         // If local storage contains previous count
         // then generate fields from previous session
-        // function restoreFields() {
-        //     if (count !== 1) {
-        //         // Grab the initial count
-        //         var initialCount = count;
-        //         for (let i=1; i<initialCount; i++) {
-        //             // Pass in the current count
-        //             restoreEmployee(i+1);
-        //         }
-        //     } else {
-        //         console.log("Count is 1");
-        //     }
-        // }
-
         function restoreFields() {
-            var storedCount = getCookie("count");
-            if (storedCount !== null) {
-                count = parseInt(storedCount);
-                if (count > 1) {
-                    for (let i=1; i<count; i++) {
-                        restoreEmployee(i+1);
-                    }
+            if (count !== 1) {
+                // Grab the initial count
+                var initialCount = count;
+                for (let i=1; i<initialCount; i++) {
+                    // Pass in the current count
+                    restoreEmployee(i+1);
                 }
             } else {
                 console.log("Count is 1");
