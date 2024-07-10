@@ -10,27 +10,27 @@
         // Total tips
         var totTips = 0;
 
-        // // Grab the count from local storage
-        // var count=localStorage.getItem("count", count);
-        // console.log(count);
+        // Grab the count from local storage
+        var count=localStorage.getItem("count", count);
+        console.log(count);
 
-        // // If count is null, initialize to 1 for initial row
-        // if (typeof count === 'undefined' || count == null || isNaN(count)) {
-        //     count = 1;
-        //     console.log("count set to", count);
-        //     // Save to local storage
-        //     localStorage.setItem("count", count);
-        // }
+        // If count is null, initialize to 1 for initial row
+        if (typeof count === 'undefined' || count == null || isNaN(count)) {
+            count = 1;
+            console.log("count set to", count);
+            // Save to local storage
+            localStorage.setItem("count", count);
+        }
 
-        var count = 1;
+        // var count = 1;
 
         // Adds another employee field for calculating
         function addEmployee() {
             // incrememnt employee count
             count++;
 
-            // // Save to local storage
-            // localStorage.setItem("count", count);
+            // Save to local storage
+            localStorage.setItem("count", count);
 
             console.log("Add employee " + count);
 
@@ -76,8 +76,8 @@
                     container.removeChild(container.lastChild);
                 }
                 count--;
-                // // Save to local storage
-                // localStorage.setItem("count", count);
+                // Save to local storage
+                localStorage.setItem("count", count);
             }
         }
 
@@ -176,24 +176,7 @@
             input.value = input.value.replace(/[^0-9.]/g, '');
         }
 
-        function addMore() {
-            for (let i=0; i<5; i++) {
-                addEmployee();
-            }
-        }
-
-        // If local storage contains previous count
-        // then generate fields from previous session
-        // function restoreFields() {
-        //     for (let i=0; i<count-1; i++) {
-        //         addEmployee();
-        //     }
-        // }
-
-        // Creating an infinite loop
-        // window.onload = function() {
-        //     restoreFields();
-        // };
-
 
         window.onload = resetFormFields;
+
+        

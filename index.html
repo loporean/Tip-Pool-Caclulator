@@ -52,5 +52,64 @@
 </body>
 
     <script src="index.js"></script>
+    
+
+    <script type="text/javascript">
+        // function addMore() {
+        //     for (let i=0; i<5; i++) {
+        //         addEmployee();
+        //     }
+        // }
+
+        function restoreEmployee(curr_count) {
+            // Container where new field will be added
+            var container = document.getElementById("employeeContainer");
+
+            // Increment the count based on the for loop
+            var employeeCount = document.createElement("span");
+            employeeCount.textContent = curr_count + ". ";
+
+            // Create new input field for name and hours
+            var nameField = document.createElement("input");
+            nameField.type = "text";
+            nameField.name = "name";
+            nameField.placeholder = "Employee Name";
+
+            var hoursField = document.createElement("input");
+            hoursField.type = "text";
+            hoursField.name = "hours";
+            hoursField.placeholder = "Hours Worked";
+            hoursField.min = "0";
+            hoursField.oninput = function() { isNum(this); };
+
+            // Add line break
+            var br = document.createElement("br");
+
+            // Append new fields to container
+            container.appendChild(employeeCount);
+            container.appendChild(nameField);
+            container.appendChild(hoursField);
+            container.appendChild(br);
+        }
+
+        // If local storage contains previous count
+        // then generate fields from previous session
+        function restoreFields() {
+            if (count !== 1) {
+                // Grab the initial count
+                var initialCount = count;
+                for (let i=1; i<initialCount; i++) {
+                    // Pass in the current count
+                    restoreEmployee(i+1);
+                }
+            } else {
+                console.log("Count is 1");
+            }
+        }
+
+        // Trigger on page load
+        window.onload = restoreFields;
+
+    </script>
 
 </html>
