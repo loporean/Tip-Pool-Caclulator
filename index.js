@@ -197,4 +197,3 @@
 
 
         window.onload = resetFormFields;
-        window.onload = resetFormFields;
