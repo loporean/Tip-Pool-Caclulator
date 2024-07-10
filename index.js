@@ -22,6 +22,8 @@
             localStorage.setItem("count", count);
         }
 
+        // var count = 1;
+
         // Adds another employee field for calculating
         function addEmployee() {
             // incrememnt employee count
@@ -174,22 +176,7 @@
             input.value = input.value.replace(/[^0-9.]/g, '');
         }
 
-        function addMore() {
-            for (let i=0; i<5; i++) {
-                addEmployee();
-            }
-        }
 
-        // If local storage contains previous count
-        // then generate fields from previous session
-        function restoreFields() {
-            for (let i=0; i<count-1; i++) {
-                addEmployee();
-            }
-        }
+        window.onload = resetFormFields;
 
-        if (count != 1) {
-            restoreFields();
-        }
-
-        // window.onload = resetFormFields;
+        
