@@ -92,23 +92,59 @@
             container.appendChild(br);
         }
 
-        // If local storage contains previous count
-        // then generate fields from previous session
+        // // If local storage contains previous count
+        // // then generate fields from previous session
+        // function restoreFields() {
+        //     if (count !== 1) {
+        //         // Grab the initial count
+        //         var initialCount = count;
+        //         for (let i=1; i<initialCount; i++) {
+        //             // Pass in the current count
+        //             restoreEmployee(i+1);
+        //         }
+        //     } else {
+        //         console.log("Count is 1");
+        //     }
+        // }
+
         function restoreFields() {
-            if (count !== 1) {
-                // Grab the initial count
+            var savedFormData = JSON.parse(localStorage.getItem("formData"));
+            var savedTotalTips = localStorage.getItem("totalTips");
+
+            if (savedFormData && savedFormData.length > 0) {
+                console.log("here");
                 var initialCount = count;
-                for (let i=1; i<initialCount; i++) {
-                    // Pass in the current count
+                // Restore the number of employee fields
+                for (let i = 1; i < initialCount; i++) {
                     restoreEmployee(i+1);
                 }
-            } else {
-                console.log("Count is 1");
+
+                // Restore the saved data
+                var employees = document.getElementsByName("name");
+                var hours = document.getElementsByName("hours");
+
+                for (let i = 0; i < savedFormData.length; i++) {
+                    employees[i].value = savedFormData[i].name;
+                    hours[i].value = savedFormData[i].hours;
+                }
+
+                // Restore total tips
+                if (savedTotalTips) {
+                    document.getElementById("totalTips").value = savedTotalTips;
+                }
+            } else if (count !== 1) {
+                // If no saved data, just restore the number of fields
+                var initialCount = count;
+                for (let i = 1; i < initialCount; i++) {
+                    restoreEmployee(i + 1);
+                }
             }
         }
 
         // Trigger on page load
-        window.onload = restoreFields;
+        window.onload = function() {
+            restoreFields();
+        }
 
     </script>
 
