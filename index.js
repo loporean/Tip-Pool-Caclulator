@@ -188,8 +188,8 @@
             }
         }
 
-        if (count != 1) {
-            restoreFields();
-        }
+        // if (count != 1) {
+        //     restoreFields();
+        // }
 
-        // window.onload = resetFormFields;
+        window.onload = resetFormFields;
