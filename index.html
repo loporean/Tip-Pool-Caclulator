@@ -7,6 +7,13 @@
     <title>Tip Pooling Calculator</title>
 </head>
 <body>
+
+    <!-- Toggle Switch -->
+     <label class="switch">
+        <input type="checkbox" id="darkModeToggle">
+        <span class="slider round"></span>
+     </label>
+
     <h1>Tip Pooling Calculator</h1>
 
     <!-- Description of calculator -->
@@ -52,100 +59,36 @@
 </body>
 
     <script src="index.js"></script>
-    
 
+    <!-- Listener for toggling dark mode -->
     <script type="text/javascript">
-        // function addMore() {
-        //     for (let i=0; i<5; i++) {
-        //         addEmployee();
-        //     }
-        // }
 
-        function restoreEmployee(curr_count) {
-            // Container where new field will be added
-            var container = document.getElementById("employeeContainer");
+        // Determine if dark mode was set
+        // If dark mode set, then load dark mode
+        // otherwise, load light mode
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const darkModeToggle = document.getElementById('darkModeToggle');
 
-            // Increment the count based on the for loop
-            var employeeCount = document.createElement("span");
-            employeeCount.textContent = curr_count + ". ";
-
-            // Create new input field for name and hours
-            var nameField = document.createElement("input");
-            nameField.type = "text";
-            nameField.name = "name";
-            nameField.placeholder = "Employee Name";
-
-            var hoursField = document.createElement("input");
-            hoursField.type = "text";
-            hoursField.name = "hours";
-            hoursField.placeholder = "Hours Worked";
-            hoursField.min = "0";
-            hoursField.oninput = function() { isNum(this); };
-
-            // Add line break
-            var br = document.createElement("br");
-
-            // Append new fields to container
-            container.appendChild(employeeCount);
-            container.appendChild(nameField);
-            container.appendChild(hoursField);
-            container.appendChild(br);
-        }
-
-        // // If local storage contains previous count
-        // // then generate fields from previous session
-        // function restoreFields() {
-        //     if (count !== 1) {
-        //         // Grab the initial count
-        //         var initialCount = count;
-        //         for (let i=1; i<initialCount; i++) {
-        //             // Pass in the current count
-        //             restoreEmployee(i+1);
-        //         }
-        //     } else {
-        //         console.log("Count is 1");
-        //     }
-        // }
-
-        function restoreFields() {
-            var savedFormData = JSON.parse(localStorage.getItem("formData"));
-            var savedTotalTips = localStorage.getItem("totalTips");
-
-            if (savedFormData && savedFormData.length > 0) {
-                console.log("here");
-                var initialCount = count;
-                // Restore the number of employee fields
-                for (let i = 1; i < initialCount; i++) {
-                    restoreEmployee(i+1);
-                }
-
-                // Restore the saved data
-                var employees = document.getElementsByName("name");
-                var hours = document.getElementsByName("hours");
-
-                for (let i = 0; i < savedFormData.length; i++) {
-                    employees[i].value = savedFormData[i].name;
-                    hours[i].value = savedFormData[i].hours;
-                }
-
-                // Restore total tips
-                if (savedTotalTips) {
-                    document.getElementById("totalTips").value = savedTotalTips;
-                }
-            } else if (count !== 1) {
-                // If no saved data, just restore the number of fields
-                var initialCount = count;
-                for (let i = 1; i < initialCount; i++) {
-                    restoreEmployee(i + 1);
-                }
+            // Load dark mode preference from local storage
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.checked = true;
             }
-        }
 
-        // Trigger on page load
-        window.onload = function() {
-            restoreFields();
-        }
+            // Store toggle setting in local storage
+            darkModeToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    document.body.classList.add('dark-mode');
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    document.body.classList.remove('dark-mode');
+                    localStorage.setItem('darkMode', 'disabled');
+                }
+            });
+        });
+
 
     </script>
+    
 
 </html>
