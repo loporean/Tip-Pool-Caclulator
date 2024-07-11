@@ -12,7 +12,7 @@ var totTips = 0;
 
 // Grab the count from local storage
 var count=localStorage.getItem("count", count);
-console.log(count);
+console.log("initial count:", count);
 
 // If count is null, initialize to 1 for initial row
 if (typeof count === 'undefined' || count == null || isNaN(count)) {
@@ -21,8 +21,6 @@ if (typeof count === 'undefined' || count == null || isNaN(count)) {
     // Save to local storage
     localStorage.setItem("count", count);
 }
-
-// var count = 1;
 
 // Adds another employee field for calculating
 function addEmployee() {
@@ -199,6 +197,75 @@ function saveFormData() {
     // Save Names, Hours, and Total Tips
     localStorage.setItem("formData", JSON.stringify(formData));
     localStorage.setItem("totalTips", document.getElementById("totalTips").value);
+}
+
+function restoreEmployee(curr_count) {
+    // Container where new field will be added
+    var container = document.getElementById("employeeContainer");
+
+    // Increment the count based on the for loop
+    var employeeCount = document.createElement("span");
+    employeeCount.textContent = curr_count + ". ";
+
+    // Create new input field for name and hours
+    var nameField = document.createElement("input");
+    nameField.type = "text";
+    nameField.name = "name";
+    nameField.placeholder = "Employee Name";
+
+    var hoursField = document.createElement("input");
+    hoursField.type = "text";
+    hoursField.name = "hours";
+    hoursField.placeholder = "Hours Worked";
+    hoursField.min = "0";
+    hoursField.oninput = function() { isNum(this); };
+
+    // Add line break
+    var br = document.createElement("br");
+
+    // Append new fields to container
+    container.appendChild(employeeCount);
+    container.appendChild(nameField);
+    container.appendChild(hoursField);
+    container.appendChild(br);
+}
+
+function restoreFields() {
+    var savedFormData = JSON.parse(localStorage.getItem("formData"));
+    var savedTotalTips = localStorage.getItem("totalTips");
+
+    if (savedFormData && savedFormData.length > 0) {
+        var initialCount = count;
+        // Restore the number of employee fields
+        for (let i = 1; i < initialCount; i++) {
+            restoreEmployee(i+1);
+        }
+
+        // Restore the saved data
+        var employees = document.getElementsByName("name");
+        var hours = document.getElementsByName("hours");
+
+        for (let i = 0; i < savedFormData.length; i++) {
+            employees[i].value = savedFormData[i].name;
+            hours[i].value = savedFormData[i].hours;
+        }
+
+        // Restore total tips
+        if (savedTotalTips) {
+            document.getElementById("totalTips").value = savedTotalTips;
+        }
+    } else if (count !== 1) {
+        // If no saved data, just restore the number of fields
+        var initialCount = count;
+        for (let i = 1; i < initialCount; i++) {
+            restoreEmployee(i+1);
+        }
+    }
+}
+
+// Trigger on page load
+window.onload = function() {
+    restoreFields();
 }
 
 // Listen for changes to forms
