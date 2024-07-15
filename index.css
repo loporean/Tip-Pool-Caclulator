@@ -1,3 +1,19 @@
+/* Color Variables */
+:root {
+    --lightPrimary: whitesmoke;
+    --lightSecondary: #ccc;
+    --lightButton: #04AA6D;
+    --lightButtonHover: rgba(24, 131, 24, 0.952);
+    --lightText: white;
+
+    --darkPrimary: #222222;
+    --darkSecondary: #333433ea;
+    --darkButton: #264733;
+    --darkButtonHover: #203c2b;
+    --darkText: whitesmoke;
+    --darkInput: #ccc;
+}
+
 .inputTitle {
     display: flex;
     padding: 10px;
@@ -20,7 +36,7 @@ body {
     margin-left: 10%;
     /* Disable touble tap iOS */
     touch-action: manipulation;
-    background-color: whitesmoke;
+    background-color: var(--lightPrimary);
     color: black;
     transition: background-color 0.3s, color 0.3s;
 }
@@ -31,10 +47,12 @@ body {
 }
 
 button {
-    background-color: #04AA6D; /* Green */
+    /* background-color: #04AA6D; */
+    background-color: var(--lightButton); /* Green */
     border: none;
     border-radius: 12px;
-    color: white;
+    /* color: white; */
+    color: var(--lightText);
     padding: 8px 16px;
     text-align: center;
     text-decoration: none;
@@ -46,7 +64,7 @@ button {
 }
 
 button:hover {
-    background-color: rgba(24, 131, 24, 0.952);
+    background-color: var(--lightButtonHover);
 }
 
 /* TOGGLE SWITCH */
@@ -74,7 +92,8 @@ button:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    /* background-color: #ccc; */
+    background-color: var(--lightSecondary);
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -86,24 +105,28 @@ button:hover {
     width: 20px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    /* background-color: white; */
+    background-color: var(--lightPrimary);
     -webkit-transition: .4s;
     transition: .4s;
 }
   
 input:checked + .slider {
-    background-color: #333433ea;
+    /* background-color: #333433ea; */
+    background-color: var(--darkSecondary);
 }
 
 input:focus + .slider {
-    box-shadow: 0 0 1px #333433ea;
+    /* box-shadow: 0 0 1px #333433ea; */
+    box-shadow: 0 0 1px var(--darkSecondary);
 }
   
 input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
-    background-color: #222222;
+    /* background-color: #222222; */
+    background-color: var(--darkPrimary);
 }
 
 /* Rounded sliders */
@@ -117,22 +140,25 @@ input:checked + .slider:before {
 
 /* Dark Mode */
 body.dark-mode {
-    background-color: #222222;
-    color: whitesmoke;
+    /* background-color: #222222; */
+    background-color: var(--darkPrimary);
+    /* color: whitesmoke; */
+    color: var(--darkText);
 }
 
 body.dark-mode button {
-    background-color: #264733;
-    color: whitesmoke;
+    background-color: var(--darkButton);
+    /* color: whitesmoke; */
+    color: var(--darkText);
     box-shadow: 0 4px 10px 0 #222225;
 }
 
 body.dark-mode button:hover {
-    background-color: #203c2b;
+    background-color: var(--darkButtonHover);
 }
 
 body.dark-mode input {
-    background-color: whitesmoke;
+    background-color: var(--darkInput);
 }
 
 body.dark-mode input:focus {
