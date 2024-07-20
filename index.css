@@ -1,3 +1,21 @@
+/* Color Variables */
+:root {
+    /* Light Mode */
+    --lightPrimary: whitesmoke;
+    --lightSecondary: #ccc;
+    --lightButton: #04AA6D;
+    --lightButtonHover: rgba(24, 131, 24, 0.952);
+    --lightText: white;
+    
+    /* Dark Mode */
+    --darkPrimary: #222222;
+    --darkSecondary: #333433ea;
+    --darkButton: #264733;
+    --darkButtonHover: #203c2b;
+    --darkText: whitesmoke;
+    --darkInput: #ccc;
+}
+
 .inputTitle {
     display: flex;
     padding: 10px;
@@ -20,9 +38,10 @@ body {
     margin-left: 10%;
     /* Disable touble tap iOS */
     touch-action: manipulation;
-    background-color: whitesmoke;
+    background-color: var(--lightPrimary);
     color: black;
     transition: background-color 0.3s, color 0.3s;
+    /* font-family: Arial, Helvetica, sans-serif; */
 }
 
 .description {
@@ -31,10 +50,12 @@ body {
 }
 
 button {
-    background-color: #04AA6D; /* Green */
+    /* background-color: #04AA6D; */
+    background-color: var(--lightButton); /* Green */
     border: none;
     border-radius: 12px;
-    color: white;
+    /* color: white; */
+    color: var(--lightText);
     padding: 8px 16px;
     text-align: center;
     text-decoration: none;
@@ -46,7 +67,7 @@ button {
 }
 
 button:hover {
-    background-color: rgba(24, 131, 24, 0.952);
+    background-color: var(--lightButtonHover);
 }
 
 /* TOGGLE SWITCH */
@@ -74,7 +95,8 @@ button:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    /* background-color: #ccc; */
+    background-color: var(--lightSecondary);
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -86,24 +108,28 @@ button:hover {
     width: 20px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    /* background-color: white; */
+    background-color: var(--lightPrimary);
     -webkit-transition: .4s;
     transition: .4s;
 }
   
 input:checked + .slider {
-    background-color: #333433ea;
+    /* background-color: #333433ea; */
+    background-color: var(--darkSecondary);
 }
 
 input:focus + .slider {
-    box-shadow: 0 0 1px #333433ea;
+    /* box-shadow: 0 0 1px #333433ea; */
+    box-shadow: 0 0 1px var(--darkSecondary);
 }
   
 input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
-    background-color: #222222;
+    /* background-color: #222222; */
+    background-color: var(--darkPrimary);
 }
 
 /* Rounded sliders */
@@ -117,26 +143,113 @@ input:checked + .slider:before {
 
 /* Dark Mode */
 body.dark-mode {
-    background-color: #222222;
-    color: whitesmoke;
+    /* background-color: #222222; */
+    background-color: var(--darkPrimary);
+    /* color: whitesmoke; */
+    color: var(--darkText);
 }
 
 body.dark-mode button {
-    background-color: #264733;
-    color: whitesmoke;
+    background-color: var(--darkButton);
+    /* color: whitesmoke; */
+    color: var(--darkText);
     box-shadow: 0 4px 10px 0 #222225;
 }
 
 body.dark-mode button:hover {
-    background-color: #203c2b;
+    background-color: var(--darkButtonHover);
 }
 
 body.dark-mode input {
-    background-color: whitesmoke;
+    background-color: var(--darkInput);
 }
 
 body.dark-mode input:focus {
     outline: none;
     box-shadow: 0 0 1px 1px #333433ea;
 }
+
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: var(--lightButton);
+    color: var(--lightText);
+    padding: 10px 13px 10px 13px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 2cap;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown-menu {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--lightPrimary);
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 12px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-radius: 12px;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: var(--lightButtonHover);
+    color: var(--lightText);
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: var(--lightButtonHover);
+}
+
+/* Dark Mode Adjustments */
+body.dark-mode .dropbtn {
+    background-color: var(--darkButton);
+    color: var(--darkText);
+}
+
+body.dark-mode .dropdown-content {
+    background-color: var(--darkPrimary);
+}
+
+body.dark-mode .dropdown-content a {
+    color: var(--darkText);
+}
+
+body.dark-mode .dropdown-content a:hover {
+    background-color: var(--darkButtonHover);
+    color: var(--darkText);
+}
+
+.dropdown-content {
+    right: 5px;
+}
+
+.show {
+    display: block;
+}
+
 

@@ -263,14 +263,60 @@ function restoreFields() {
     }
 }
 
+
 // Trigger on page load
 window.onload = function() {
     restoreFields();
 }
 
-// Listen for changes to forms
-document.addEventListener('input', function(e) {
-    if (e.target.tagName === 'INPUT') {
-        saveFormData();
-    }
+// // Listener for toggling dark mode
+// // Determine if dark mode was set
+// // If dark mode set, then load dark mode
+// // otherwise, load light mode
+// document.addEventListener('DOMContentLoaded', (event) => {
+//     const darkModeToggle = document.getElementById('darkModeToggle');
+
+//     // Load dark mode preference from local storage
+//     if (localStorage.getItem('darkMode') === 'enabled') {
+//         document.body.classList.add('dark-mode');
+//         darkModeToggle.checked = true;
+//     }
+
+//     // Store toggle setting in local storage
+//     darkModeToggle.addEventListener('change', function() {
+//         if (this.checked) {
+//             document.body.classList.add('dark-mode');
+//             localStorage.setItem('darkMode', 'enabled');
+//         } else {
+//             document.body.classList.remove('dark-mode');
+//             localStorage.setItem('darkMode', 'disabled');
+//         }
+//     });
+// });
+
+// Listener for dropdown menu
+document.addEventListener('DOMContentLoaded', (event) => {
+    const dropbtn = document.getElementById('dropbtn');
+    const dropdownContent = document.getElementById('dropdown-content');
+
+    // Toggle dropdown menu
+    dropbtn.addEventListener('click', () => {
+        dropdownContent.classList.toggle('show');
+    });
+
+    // Close dropdown when clicking outside of menu
+    window.addEventListener('click', (event) => {
+        if (!event.target.matches('#dropbtn')) {
+            if (dropdownContent.classList.contains('show')) {
+                dropdownContent.classList.remove('show');
+            }
+        }
+    });
 });
+
+// // Listener for form changes
+// document.addEventListener('input', function(e) {
+//     if (e.target.tagName === 'INPUT') {
+//         saveFormData();
+//     }
+// });
