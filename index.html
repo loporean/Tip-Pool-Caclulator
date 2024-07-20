@@ -81,4 +81,20 @@
         });
     </script>
 
+    <!-- Check if dark mode is enabled -->
+    <!-- If it is, then update the color scheme for the page -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check for dark mode preference
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+
+        function getData() {
+            const data = localStorage.getItem('sharedData');
+            document.getElementById('displayData').innerText = data ? data : 'No data found';
+        }
+    </script>
+
 </html>
