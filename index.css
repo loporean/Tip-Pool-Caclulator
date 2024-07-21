@@ -28,6 +28,13 @@
     width: 160px;
 }
 
+/* Mobile only */
+@media only screen and (max-width: 768px) {
+    input {
+        border: 1px solid black;
+    }
+}
+
 .results {
     margin-top: 30px;
     margin-left: 10px;
